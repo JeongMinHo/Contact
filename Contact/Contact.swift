@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Contact: Equatable {
+class Contact: NSObject, NSCoding {
     
     var name: String
     var phoneNumber: String
@@ -20,5 +20,15 @@ class Contact: Equatable {
     
     static func == (lhs: Contact, rhs: Contact) -> Bool {
         return lhs.phoneNumber == rhs.phoneNumber
+    }
+    
+    required init?(coder: NSCoder) {
+        self.name = coder.decodeObject(forKey: "name") as? String ?? ""
+        self.phoneNumber = coder.decodeObject(forKey: "phoneNumber") as? String ?? ""
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.name, forKey: "name")
+        coder.encode(self.phoneNumber, forKey: "phoneNumber")
     }
 }

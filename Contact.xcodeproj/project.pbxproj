@@ -60,15 +60,15 @@
 		CEBBD088246D0CC600B092EC /* Contact */ = {
 			isa = PBXGroup;
 			children = (
-				CEBBD089246D0CC600B092EC /* AppDelegate.swift */,
-				CEBBD08B246D0CC600B092EC /* SceneDelegate.swift */,
-				CEBBD08D246D0CC600B092EC /* ContactViewController.swift */,
-				CE2668D5246D39DB00082D7F /* Contact.swift */,
 				CE2668D7246D39E800082D7F /* ContactModel.swift */,
 				CEBBD08F246D0CC600B092EC /* Main.storyboard */,
+				CEBBD08D246D0CC600B092EC /* ContactViewController.swift */,
+				CE2668D5246D39DB00082D7F /* Contact.swift */,
 				CEBBD092246D0CCB00B092EC /* Assets.xcassets */,
-				CEBBD094246D0CCB00B092EC /* LaunchScreen.storyboard */,
 				CEBBD097246D0CCB00B092EC /* Info.plist */,
+				CEBBD08B246D0CC600B092EC /* SceneDelegate.swift */,
+				CEBBD089246D0CC600B092EC /* AppDelegate.swift */,
+				CEBBD094246D0CCB00B092EC /* LaunchScreen.storyboard */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
