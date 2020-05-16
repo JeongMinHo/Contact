@@ -29,11 +29,9 @@ class ContactViewController: UIViewController {
         }
         tableView.reloadData()
     }
-        
     
     // MARK: - Property
     let model = ContactModel()
-    let userDefaults = UserDefaults.standard
 
     // MARK: - Method
     func setup() {
@@ -54,19 +52,18 @@ class ContactViewController: UIViewController {
         editButton.setTitle("Edit", for: .normal)
     }
     
-    func setUserDefaults() {
-        for i in 0...model.contacts.count-1 {
-            userDefaults.set(model.contacts[i].phoneNumber, forKey: model.contacts[i].phoneNumber)
-        }
-        self.userDefaults.synchronize()
-//        print(userDefaults.value(forKey: model.contacts[4].phoneNumber) ?? 0)
-    }
+//    func setUserDefaults() {
+//        for i in 0...model.contacts.count-1 {
+//            userDefaults.set(model.contacts[i].phoneNumber, forKey: model.contacts[i].phoneNumber)
+//        }
+////        print(userDefaults.value(forKey: model.contacts[4].phoneNumber) ?? 0)
+//    }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.setUserDefaults()
+//        self.setUserDefaults()
     }
 }
 
@@ -99,9 +96,9 @@ extension ContactViewController: UITableViewDataSource {
 extension ContactViewController: ContactCellDelegate {
     func delete(contact: Contact) {
         self.model.delete(contact: contact)
-        self.userDefaults.removeObject(forKey: contact.phoneNumber)
-        print(userDefaults.value(forKey: model.contacts[0].phoneNumber) ?? 0)
-        self.userDefaults.synchronize()
+//        self.userDefaults.removeObject(forKey: contact.phoneNumber)
+//        print(userDefaults.value(forKey: model.contacts[0].phoneNumber) ?? 0)
+    
     }
     
     func reloadData() {

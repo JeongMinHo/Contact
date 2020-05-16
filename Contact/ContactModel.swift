@@ -17,11 +17,17 @@ class ContactModel {
     private(set) var contacts = [Contact]()
     
     init() {
-        getContacts()
+        if UserDefaults.standard.object(forKey: "Contact") == nil {
+            getContacts()
+            encodedContact()
+        } else {
+            getContactUserDefaults()
+        }
     }
     
     func delete(contact: Contact) {
         contacts.removeAll { $0 == contact }
+        encodedContact()
     }
     
     private func getContacts() {
@@ -31,6 +37,30 @@ class ContactModel {
                 self.contacts.append(Contact(name: cnContact.givenName + cnContact.familyName, phoneNumber: cnContact.phoneNumbers.first?.value.stringValue ?? ""))
             }
         } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func encodedContact() {
+        let jsonEncoder: JSONEncoder = JSONEncoder()
+        do {
+            let encoded = try jsonEncoder.encode(contacts)
+            UserDefaults.standard.set(encoded, forKey: "Contact")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func getContactUserDefaults() {
+        let jsonDecoder: JSONDecoder = JSONDecoder()
+        guard let data = UserDefaults.standard.data(forKey: "Contact") else { return }
+        
+        do {
+            let decoded = try jsonDecoder.decode([Contact].self, from: data)
+            print(decoded)
+            self.contacts = decoded
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
